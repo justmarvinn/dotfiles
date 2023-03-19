@@ -3,6 +3,7 @@
 " You need to install:
 " vim-plug
 " exuberant ctags
+" ripgrep
 "
 " LSPs by default:
 " rust-analyzer
@@ -40,6 +41,12 @@ set noswapfile
 set autoread
 
 call plug#begin('~/.config/nvim/plugged')
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+nnoremap ff <cmd>Telescope find_files<cr>
+nnoremap fg <cmd>Telescope live_grep<cr>
 
 Plug 'neovim/nvim-lspconfig'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -82,7 +89,7 @@ colorscheme onedark
 lua <<EOF
     -- Setup treesitter
     require('nvim-treesitter.configs').setup {
-      ensure_installed = { "rust", "cpp", "comment" },
+        ensure_installed = { "rust", "cpp", "comment" },
     }
 
     -- Set up nvim-cmp.
@@ -107,8 +114,10 @@ lua <<EOF
         mapping = cmp.mapping.preset.insert({
             ['<Tab>'] = cmp.mapping.select_next_item(),
             ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-            ['<C-j>'] = cmp.mapping.scroll_docs(4),
-            ['<C-k>'] = cmp.mapping.scroll_docs(-4),
+            -- ['<C-j>'] = cmp.mapping.scroll_docs(4),
+            -- ['<C-k>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-n>'] = cmp.mapping.scroll_docs(4),
+            ['<C-p>'] = cmp.mapping.scroll_docs(-4),
             ['<C-Space>'] = cmp.mapping.complete(),
             ['<CR>'] = cmp.mapping.confirm {
                 behavior = cmp.ConfirmBehavior.Replace,
