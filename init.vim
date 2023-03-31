@@ -40,6 +40,8 @@ set encoding=UTF-8
 set noswapfile
 set autoread
 
+filetype plugin indent on
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'nvim-lua/plenary.nvim'
@@ -63,7 +65,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'preservim/nerdtree'
-nnoremap <C-d> :NERDTreeToggle<CR>
+nmap <C-d> :NERDTreeToggle<CR>
 
 Plug 'tpope/vim-commentary'
 Plug 'ryanoasis/vim-devicons'
@@ -80,6 +82,14 @@ Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'sickill/vim-monokai'
 
+" Plug 'rust-lang/rust.vim'
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+nmap md <Plug>MarkdownPreview
+" nmap <C-p> <Plug>MarkdownPreviewToggle
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+" nmap md <cmd>MarkdownPreview<CR>
+
 call plug#end()
 
 colorscheme onedark
@@ -89,7 +99,7 @@ colorscheme onedark
 lua <<EOF
     -- Setup treesitter
     require('nvim-treesitter.configs').setup {
-        ensure_installed = { "rust", "cpp", "comment" },
+        ensure_installed = { "rust", "cpp", "comment", "markdown", "pyright" },
     }
 
     -- Set up nvim-cmp.
@@ -154,7 +164,7 @@ lua <<EOF
     })
 
     -- Set up lspconfig.
-    local servers = { 'clangd', 'rust_analyzer' }
+    local servers = { 'clangd', 'rust_analyzer', 'python' }
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     for _, server in ipairs(servers) do
         require('lspconfig')[server].setup {
