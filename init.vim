@@ -99,7 +99,7 @@ colorscheme onedark
 lua <<EOF
     -- Setup treesitter
     require('nvim-treesitter.configs').setup {
-        ensure_installed = { "rust", "cpp", "comment", "markdown", "pyright" },
+        ensure_installed = { "rust", "cpp", "comment", "markdown" },
     }
 
     -- Set up nvim-cmp.
@@ -164,7 +164,7 @@ lua <<EOF
     })
 
     -- Set up lspconfig.
-    local servers = { 'clangd', 'rust_analyzer', 'python' }
+    local servers = { 'clangd', 'rust_analyzer' }
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     for _, server in ipairs(servers) do
         require('lspconfig')[server].setup {
