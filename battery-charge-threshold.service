@@ -1,5 +1,11 @@
 # https://www.linuxuprising.com/2021/02/how-to-limit-battery-charging-set.html
- # etc/systemd/system/battery-cahrge-threshold.service
+
+# wget https://raw.githubusercontent.com/justmarvinn/dotfiles/main/battery-charge-threshold.service
+# mv battery-charge-threshold.service /etc/systemd/system/battery-cahrge-threshold.service
+# cd /etc/systemd/system/
+# sudo systemctl enable battery-charge-threshold.service
+# sudo systemctl start battery-charge-threshold.service
+
 [Unit]
 Description=Set the battery charge threshold
 After=multi-user.target
