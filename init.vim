@@ -82,6 +82,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'sickill/vim-monokai'
 
+Plug 'ap/vim-css-color'
+
 " Plug 'rust-lang/rust.vim'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
